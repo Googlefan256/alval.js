@@ -24,6 +24,7 @@ module.exports = async function(message, run){
 		if(a.startsWith("."))return "file must not start with ."
 		return require("fs").readFileSync("./files/"+message.author.id+"/"+a,"utf-8")
 	}
+	const fetch =require("node-fetch")
 	const path = require("path")
 	const Discord = require("discord.js")
 	const client = message.client
