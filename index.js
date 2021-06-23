@@ -11,7 +11,7 @@ client.once("ready", ()=>{
 })
 client.on("message", async msg => {
 	if(msg.author.id === client.user.id)return;
-	if(msg.content === prefix + 'help')return msg.channel.send(client.user.tag+'```\n招待...https://is.gd/alval_js\nサポート...https://is.gd/glow_support\nサーバー数...'+client.guilds.cache.size+'\n>[command]でコマンドを実行します \n>> [command]でコマンドを保存します。\n>単体 で保存したコマンドを実行します。\n特有の関数\nls()...ファイル一覧を表示します。\nread("ファイル名")...中身を読み込みます。\nwrite("ファイル名","内容")...ファイルに書き込みます。\ndel("ファイル名")...ファイルを削除します。\n```\nウェブ版...https://alval.f5.si/')
+	if(msg.content === prefix + 'help')return msg.channel.send(client.user.tag+'\nhttps://alval.f5.si/')
 	if(msg.content.startsWith(prefix + '>')){
 	const run = msg.content.slice(prefix.length + 1).trim()
 	fs.writeFileSync('./lib/' + msg.author.id+'.txt', run)
@@ -28,10 +28,7 @@ client.on("message", async msg => {
 	}
 }
 	})
-require('http').createServer(function(req, res) {
-		res.writeHead(200, {
-        'Content-Type': 'text/plain; charset=utf-8'
-    }).write('招待...https://is.gd/alval_js\nサポート...https://is.gd/glow_support\nサーバー数...'+client.guilds.cache.size+'\n>[command]でコマンドを実行します \n>> [command]でコマンドを保存します。\n>単体 で保存したコマンドを実行します。\n特有の関数\nls()...ファイル一覧を表示します。\nread("ファイル名")...中身を読み込みます。\nwrite("ファイル名","内容")...ファイルに書き込みます。\ndel("ファイル名")...ファイルを削除します。');
-		res.end();
-	})
-.listen(8080);
+const express = require('express')
+const app = express()
+app.listen(8080)
+app.use('/',express.static('server'))
